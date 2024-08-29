@@ -115,7 +115,7 @@ export default function StartGameComponent({
                         </div>
                     </div>
                     <div className="mt-4 flex justify-end items-center">
-                        <MainButtonComponent title="Start" onClick={() => console.log("hello")} />
+                        <MainButtonComponent title="Start" />
                     </div>
                 </form>
             </div>

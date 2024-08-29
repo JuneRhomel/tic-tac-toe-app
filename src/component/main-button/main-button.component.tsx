@@ -6,7 +6,7 @@ export default function MainButtonComponent(
     }: {
         title: string,
         type?: "main" | "secondary",
-        onClick: () => void
+        onClick?: () => void
     }
 ) {
 
