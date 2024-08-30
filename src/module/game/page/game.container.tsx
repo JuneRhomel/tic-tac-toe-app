@@ -52,7 +52,7 @@ export default function GameContainer() {
                     initial={{ scale: 0 }}
                     animate={{ scale: 1 }}
                     transition={{ duration: 0.3, delay: 1.5 }}
-                    className="mt-52 flex gap-2 md:mt-0 md:mb-48">
+                    className="mt-60 flex gap-2 md:mt-0 md:mb-48">
                     <span className="stroke-text-1 text-white text-sm text-400 titanOneFont  mb-5">
                         Win: {gameDetails.player2.score ? gameDetails.player2.score : 0}
                     </span>
@@ -78,7 +78,7 @@ export default function GameContainer() {
                     initial={{ scale: 0 }}
                     animate={{ scale: 1 }}
                     transition={{ duration: 0.3, delay: 1.5 }}
-                    className="mt-52 flex gap-2">
+                    className="mt-60 flex gap-2">
                     <span className="stroke-text-1 text-white text-sm text-400 titanOneFont  mb-5">
                         Win: {gameDetails.player1.score ? gameDetails.player1.score : 0}
                     </span>
