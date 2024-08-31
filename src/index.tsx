@@ -19,7 +19,7 @@ root.render(
           <RouterProvider router={router} />
         </ModalProvider>
       </Provider>
-    </QueryClientProvider>
+    </QueryClientProvider> 
   </React.StrictMode>
 );
 
