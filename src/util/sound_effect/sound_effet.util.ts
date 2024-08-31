@@ -19,6 +19,6 @@ export const ButtonSound = () => {
     gameMusic.play();
 }
 export const EndGame = () => {
-    const gameMusic = new Audio("/sound/end_game.wav");
+    const gameMusic = new Audio("/sound/endgame.wav");
     gameMusic.play();
 }

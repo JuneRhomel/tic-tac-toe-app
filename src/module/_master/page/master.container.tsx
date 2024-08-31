@@ -1,10 +1,10 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Outlet } from "react-router-dom";
-const music = new Audio("/sound/game_music.mp3");
 import { TbMusicOff } from "react-icons/tb";
 import { TbMusic } from "react-icons/tb";
 
 export default function MasterContainer() {
+  const music = new Audio("/sound/gamemusic.mp3");
   const [isPlaying, setIsPlaying] = useState(false);
   const audioRef = useRef(music);
   const handlePlay = () => {
