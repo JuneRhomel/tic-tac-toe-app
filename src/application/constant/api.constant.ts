@@ -1,5 +1,5 @@
 
 export default class ApiConstant {
-  static BASE_URL = "http://54.179.157.162";
+  static BASE_URL = "http://3.1.186.139";
   static GAME = "/game";
 }
