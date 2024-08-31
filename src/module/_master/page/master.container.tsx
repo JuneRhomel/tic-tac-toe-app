@@ -4,7 +4,7 @@ import { TbMusicOff } from "react-icons/tb";
 import { TbMusic } from "react-icons/tb";
 
 export default function MasterContainer() {
-  const music = new Audio("/sound/gamemusic.mp3");
+  const music = new Audio("./assets/sound/gamemusic.mp3");
   const [isPlaying, setIsPlaying] = useState(false);
   const audioRef = useRef(music);
   const handlePlay = () => {
