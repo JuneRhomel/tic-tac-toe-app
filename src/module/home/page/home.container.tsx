@@ -1,4 +1,4 @@
-import react from "react";
+import react, { useEffect, useState } from "react";
 import { motion } from 'framer-motion';
 import { useQuery } from "@tanstack/react-query";
 import { useDispatch, useSelector } from "react-redux";
@@ -10,6 +10,7 @@ import GameModel from "../../../infrastructure/model/game.model";
 import { showModal } from "../../../application/provider/modal/modal.provider";
 import StartGameComponent from "./component/start_game.component";
 import { NavigateOptions, To, useNavigate } from "react-router-dom";
+import { ButtonSound } from "../../../util/sound_effect/sound_effet.util";
 
 export default function HomeContainer() {
     const navigate = useNavigate();
@@ -47,7 +48,9 @@ export default function HomeContainer() {
         }
     }
 
+
     const modalToStart = () => {
+        ButtonSound()
         showModal(
             <StartGameComponent navigateTo={navigateTo} />
         )
@@ -55,6 +58,7 @@ export default function HomeContainer() {
 
     return (
         <>
+
             <div className=" justify-center ">
                 <motion.img
 
@@ -82,6 +86,7 @@ export default function HomeContainer() {
                         transition={{ duration: 0.3, delay: 1.5 }}
                     >
                         <MainButtonComponent title="Start Game" onClick={modalToStart} />
+
                     </motion.div >
                 </div>
 

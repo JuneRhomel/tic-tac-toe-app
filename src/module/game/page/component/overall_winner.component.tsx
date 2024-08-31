@@ -8,13 +8,16 @@ import MainButtonComponent from "../../../../component/main-button/main-button.c
 import { closeModal } from "../../../../application/provider/modal/modal.provider"
 export default function OverallWinnerComponent({
     id,
-    navigateTo
+    navigateTo,
+    refetch
 }: {
     id: string
     navigateTo: (To: To, option?: NavigateOptions) => void
+    refetch: () => void
 }) {
     const dispatch: AppDispatch = useDispatch()
     const fetchGame = async () => {
+        refetch()
         const result = await dispatch(getGame(String(id)))
 
         if (result.payload === "error") {
@@ -40,7 +43,7 @@ export default function OverallWinnerComponent({
     const redirect = () => {
         navigateTo("/")
         closeModal()
-
+      
     }
 
 

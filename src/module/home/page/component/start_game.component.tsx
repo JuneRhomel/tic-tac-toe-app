@@ -7,11 +7,12 @@ import { useDispatch } from "react-redux";
 import { createGamePlayer } from "../../../../api/slice/create_game_player.slice";
 import { NavigateOptions, To, useNavigate } from "react-router-dom";
 import { closeModal } from "../../../../application/provider/modal/modal.provider";
+import { ButtonSound } from "../../../../util/sound_effect/sound_effet.util";
 
 export default function StartGameComponent({
     navigateTo
 }: {
-    navigateTo: ( To: To, option?: NavigateOptions) => void
+    navigateTo: (To: To, option?: NavigateOptions) => void
 }
 ) {
     const { register, handleSubmit, formState: { errors } } = useForm();
@@ -47,10 +48,10 @@ export default function StartGameComponent({
         }
 
         const resultResponseSuccess = result.payload as ResponseApi
-
+        ButtonSound()
         closeModal()
         navigateTo(`/game/${resultResponseSuccess.insertedId}`)
-
+     
     }
 
     return (
@@ -115,7 +116,7 @@ export default function StartGameComponent({
                         </div>
                     </div>
                     <div className="mt-4 flex justify-end items-center">
-                        <MainButtonComponent title="Start"  />
+                        <MainButtonComponent title="Start" />
                     </div>
                 </form>
             </div>

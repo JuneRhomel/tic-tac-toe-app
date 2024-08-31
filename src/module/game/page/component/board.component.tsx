@@ -9,6 +9,7 @@ import { useDispatch } from "react-redux";
 import { roundStart } from "../../../../api/slice/round_start.slice";
 import RoundsModel from "../../../../infrastructure/model/rounds.model";
 import NotifPopupComponent from "./notif_popup.component";
+import { OPlayerSound, WinnerSound, XPlayerSound } from "../../../../util/sound_effect/sound_effet.util";
 const PLAYER_X = "X";
 const PLAYER_O = "O";
 
@@ -32,12 +33,20 @@ export default function BoardComponent({
     }
 
     const handleBoxClick = (index: number) => {
+        if (playerTurn === PLAYER_X) {
+            XPlayerSound()
+        }
+        if (playerTurn === PLAYER_O) {
+            OPlayerSound()
+        }
         if (tiles[index] !== null) return;
         const newTiles = [...tiles];
         newTiles[index] = playerTurn;
         setTiles(newTiles);
         setHowWin(playerTurn);
+
         setPlayerTurn(playerTurn === PLAYER_X ? PLAYER_O : PLAYER_X);
+
     };
 
 
@@ -88,7 +97,9 @@ export default function BoardComponent({
         if (!isDraw) {
             setTimeout(() => {
                 showModal(
-                    <NotifPopupComponent id={gameModel._id} navigateTo={navigateTo} winnerName={winnerName} />
+                    <NotifPopupComponent
+                        refetch={refetch}
+                        id={gameModel._id} navigateTo={navigateTo} winnerName={winnerName} />
                 );
                 setTiles(Array(9).fill(null));
                 setWinCompination([]);
@@ -102,16 +113,17 @@ export default function BoardComponent({
         if (checkWin()) {
             setIsClickable(false);
             saveRound();
-            refetch()
+            WinnerSound();
         } else if (checkDraw()) {
             saveRound(true);
             showModal(
-                <NotifPopupComponent id={gameModel._id} isDraw={true} />
+                <NotifPopupComponent
+                    refetch={refetch}
+                    id={gameModel._id} isDraw={true} />
             );
             setTiles(Array(9).fill(null));
-            refetch()
-
         }
+        refetch()
     }, [tiles, playerTurn]);
 
 
@@ -119,9 +131,9 @@ export default function BoardComponent({
 
     return (
         <motion.div
-        initial={{ scale: 0 }}
-        animate={{ scale: 1 }}
-        transition={{ duration: 0.3 , delay: 0.5 }}
+            initial={{ scale: 0 }}
+            animate={{ scale: 1 }}
+            transition={{ duration: 0.3, delay: 0.5 }}
         >
             <div className=" w-80 px-5 py-1 rounded-lg border-black border-2 absolute bg-white h-auto  top-1/2 left-1/2   -translate-x-1/2 -translate-y-1/2">
 

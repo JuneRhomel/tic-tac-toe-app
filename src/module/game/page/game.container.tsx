@@ -31,17 +31,28 @@ export default function GameContainer() {
 
     })
     if (queryGame.isLoading) {
-        return <div>Loading...</div>
+        return <div className="h-screen flex justify-center items-center">
+            <span className="stroke-text-1 text-xl text-white text-400 titanOneFont  mb-5">
+                Loading...
+            </span>
+        </div>
     }
 
     if (queryGame.isError) {
-        return <div>Error</div>
+        return <div className="h-screen flex justify-center items-center">
+            <span className="stroke-text-1 text-xl text-red-500 text-400 titanOneFont  mb-5">
+                Somting went wrong
+            </span>
+        </div>
     }
 
     const gameDetails = queryGame.data as GameModel
 
     const refetch = () => {
         queryGame.refetch()
+    }
+    if (gameDetails.overallWinner) {
+        navigate("/")
     }
 
     return (
@@ -54,7 +65,7 @@ export default function GameContainer() {
                     transition={{ duration: 0.3, delay: 1.5 }}
                     className="mt-60 flex gap-2 md:mt-0 md:mb-48">
                     <span className="stroke-text-1 text-white text-sm text-400 titanOneFont  mb-5">
-                        Win: {gameDetails.player2.score ? gameDetails.player2.score : 0}
+                        Win: {gameDetails.player1.score ? gameDetails.player1.score : 0}
                     </span>
                     <span className="stroke-text-1 text-white text-sm text-400 titanOneFont  mb-5">
                         Loss: {gameDetails.player1.score ? gameDetails.player1.score : 0}
@@ -80,10 +91,10 @@ export default function GameContainer() {
                     transition={{ duration: 0.3, delay: 1.5 }}
                     className="mt-60 flex gap-2">
                     <span className="stroke-text-1 text-white text-sm text-400 titanOneFont  mb-5">
-                        Win: {gameDetails.player1.score ? gameDetails.player1.score : 0}
+                        Win: {gameDetails.player2.score ? gameDetails.player2.score : 0}
                     </span>
                     <span className="stroke-text-1 text-white text-sm text-400 titanOneFont  mb-5">
-                        Loss: {gameDetails.player2.score ? gameDetails.player2.score : 0}
+                        Loss: {gameDetails.player1.score ? gameDetails.player1.score : 0}
                     </span>
                     <span className="stroke-text-1 text-white text-sm text-400 titanOneFont  mb-5">
                         Draw:  {gameDetails.drawScore ? gameDetails.drawScore : 0}

@@ -5,18 +5,21 @@ import { AppDispatch } from "../../../../infrastructure/redux/store.redux"
 import { NavigateOptions, To } from "react-router-dom"
 import { endGame } from "../../../../api/slice/end_game.slice"
 import OverallWinnerComponent from "./overall_winner.component"
+import { ButtonSound, EndGame } from "../../../../util/sound_effect/sound_effet.util"
 
 export default function NotifPopupComponent(
     {
         id,
         winnerName = "",
         isDraw = false,
-        navigateTo
+        navigateTo,
+        refetch
     }: {
         id: string
         winnerName?: string
         isDraw?: boolean
-        navigateTo?: (To: To, option?: NavigateOptions) => void
+        navigateTo?: (To: To, option?: NavigateOptions) => void,
+        refetch: () => void
     }
 ) {
     const dispatch: AppDispatch = useDispatch()
@@ -28,6 +31,8 @@ export default function NotifPopupComponent(
     }
 
     const endGameFn = async () => {
+        ButtonSound()
+        EndGame()
         const result = await dispatch(endGame(String(id)))
 
         if (result.payload === "error") {
@@ -40,11 +45,15 @@ export default function NotifPopupComponent(
         closeModal()
         if (navigateTo) {
             showModal(
-                <OverallWinnerComponent id={id}  navigateTo={navigateTo} />
+                <OverallWinnerComponent refetch={refetch} id={id} navigateTo={navigateTo} />
             )
         }
     }
 
+    const close = () => {
+        ButtonSound()
+        closeModal()
+    }
     return (
         <div className="">
             <div>
@@ -58,7 +67,7 @@ export default function NotifPopupComponent(
 
                 <div className="flex gap-3 justify-center mt-5 mb-5">
                     <MainButtonComponent type="secondary" title="Exit" onClick={endGameFn} />
-                    <MainButtonComponent title="Continue" onClick={closeModal} />
+                    <MainButtonComponent title="Continue" onClick={close} />
                 </div>
             </div>
         </div>
