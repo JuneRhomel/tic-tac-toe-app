@@ -18,7 +18,7 @@ export default function BoxBoardComponent(
             return (
                 <motion.img
                     className="ease-in"
-                    src="../assets/small-x.png"
+                    src="../assets/x.png"
                     alt="X"
                     initial={{ scale: 0 }} 
                     animate={{ scale: winnerScale }} 

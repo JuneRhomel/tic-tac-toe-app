@@ -6,7 +6,6 @@ import { AppDispatch } from "../../../../infrastructure/redux/store.redux"
 import { useQuery } from "@tanstack/react-query"
 import MainButtonComponent from "../../../../component/main-button/main-button.component"
 import { closeModal } from "../../../../application/provider/modal/modal.provider"
-
 export default function OverallWinnerComponent({
     id,
     navigateTo
