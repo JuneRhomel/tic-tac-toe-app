@@ -9,10 +9,11 @@ export default function MasterContainer() {
   const audioRef = useRef(music);
   const handlePlay = () => {
     if (audioRef.current) {
-      audioRef.current.play();
-      audioRef.current.volume = 0.4;
-      audioRef.current.loop = true;
-      setIsPlaying(true);
+      audioRef.current.play().then(() => {
+        setIsPlaying(true);
+      }).catch((error) => {
+        console.error("Error playing audio:", error);
+      });
     }
   };
   const handleStop = () => {
