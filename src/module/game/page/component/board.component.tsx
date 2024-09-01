@@ -9,7 +9,7 @@ import { useDispatch } from "react-redux";
 import { roundStart } from "../../../../api/slice/round_start.slice";
 import RoundsModel from "../../../../infrastructure/model/rounds.model";
 import NotifPopupComponent from "./notif_popup.component";
-import { OPlayerSound, WinnerSound, XPlayerSound } from "../../../../util/sound_effect/sound_effet.util";
+import { OPlayerSound, WinnerSound, XPlayerSound } from "../../../../util/sound_effect/sound_effect.util";
 const PLAYER_X = "X";
 const PLAYER_O = "O";
 

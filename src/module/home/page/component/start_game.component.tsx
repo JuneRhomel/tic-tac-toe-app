@@ -7,7 +7,7 @@ import { useDispatch } from "react-redux";
 import { createGamePlayer } from "../../../../api/slice/create_game_player.slice";
 import { NavigateOptions, To, useNavigate } from "react-router-dom";
 import { closeModal } from "../../../../application/provider/modal/modal.provider";
-import { ButtonSound } from "../../../../util/sound_effect/sound_effet.util";
+import { ButtonSound } from "../../../../util/sound_effect/sound_effect.util";
 
 export default function StartGameComponent({
     navigateTo
