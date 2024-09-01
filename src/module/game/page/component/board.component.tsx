@@ -9,7 +9,6 @@ import { useDispatch } from "react-redux";
 import { roundStart } from "../../../../api/slice/round_start.slice";
 import RoundsModel from "../../../../infrastructure/model/rounds.model";
 import NotifPopupComponent from "./notif_popup.component";
-import { OPlayerSound, WinnerSound, XPlayerSound } from "../../../../util/sound_effect/sound_effect.util";
 const PLAYER_X = "X";
 const PLAYER_O = "O";
 
@@ -33,12 +32,6 @@ export default function BoardComponent({
     }
 
     const handleBoxClick = (index: number) => {
-        if (playerTurn === PLAYER_X) {
-            XPlayerSound()
-        }
-        if (playerTurn === PLAYER_O) {
-            OPlayerSound()
-        }
         if (tiles[index] !== null) return;
         const newTiles = [...tiles];
         newTiles[index] = playerTurn;
@@ -113,7 +106,6 @@ export default function BoardComponent({
         if (checkWin()) {
             setIsClickable(false);
             saveRound();
-            WinnerSound();
         } else if (checkDraw()) {
             saveRound(true);
             showModal(

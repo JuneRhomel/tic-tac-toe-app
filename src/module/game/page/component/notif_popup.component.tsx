@@ -5,7 +5,6 @@ import { AppDispatch } from "../../../../infrastructure/redux/store.redux"
 import { NavigateOptions, To } from "react-router-dom"
 import { endGame } from "../../../../api/slice/end_game.slice"
 import OverallWinnerComponent from "./overall_winner.component"
-import { ButtonSound, EndGame } from "../../../../util/sound_effect/sound_effect.util"
 
 export default function NotifPopupComponent(
     {
@@ -31,8 +30,6 @@ export default function NotifPopupComponent(
     }
 
     const endGameFn = async () => {
-        ButtonSound()
-        EndGame()
         const result = await dispatch(endGame(String(id)))
 
         if (result.payload === "error") {
@@ -51,7 +48,6 @@ export default function NotifPopupComponent(
     }
 
     const close = () => {
-        ButtonSound()
         closeModal()
     }
     return (

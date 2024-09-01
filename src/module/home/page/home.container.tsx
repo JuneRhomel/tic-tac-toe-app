@@ -10,7 +10,6 @@ import GameModel from "../../../infrastructure/model/game.model";
 import { showModal } from "../../../application/provider/modal/modal.provider";
 import StartGameComponent from "./component/start_game.component";
 import { NavigateOptions, To, useNavigate } from "react-router-dom";
-import { ButtonSound } from "../../../util/sound_effect/sound_effect.util";
 
 export default function HomeContainer() {
     const navigate = useNavigate();
@@ -50,7 +49,6 @@ export default function HomeContainer() {
 
 
     const modalToStart = () => {
-        ButtonSound()
         showModal(
             <StartGameComponent navigateTo={navigateTo} />
         )
