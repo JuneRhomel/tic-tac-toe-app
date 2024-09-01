@@ -3,22 +3,34 @@ import { Outlet } from "react-router-dom";
 import { TbMusicOff } from "react-icons/tb";
 import { TbMusic } from "react-icons/tb";
 import GameMusic from "../../../util/sound_effect/sound/gamemusic.mp3";
+import { loadAudio } from "../../../util/sound_effect/sound_effect.util";
 export default function MasterContainer() {
-  const music = new Audio(GameMusic);
   const [isPlaying, setIsPlaying] = useState(false);
-  const audioRef = useRef(music);
-  const handlePlay = () => {
-    if (audioRef.current) {
-      audioRef.current.play().then(() => {
+  const audioRef = useRef<HTMLAudioElement | null>(null);
+
+  const handlePlay = async () => {
+    if (!audioRef.current) {
+      try {
+        const music = await loadAudio(GameMusic);
+        audioRef.current = music;
+        music.play().catch((error) => {
+          console.error("Error playing music:", error);
+        });
         setIsPlaying(true);
-      }).catch((error) => {
-        console.error("Error playing audio:", error);
+      } catch (error) {
+        console.error("Error loading music:", error);
+      }
+    } else {
+      audioRef.current.play().catch((error) => {
+        console.error("Error playing music:", error);
       });
+      setIsPlaying(true);
     }
   };
-  const handleStop = () => {
+  const handleStop = async () => {
     if (audioRef.current) {
       audioRef.current.pause();
+      audioRef.current.currentTime = 0;
       setIsPlaying(false);
     }
   };
